@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+# Python tools for the admin workstation of Part VIII (Volume 2):
+#   hf (model acquisition, toolchain/acquire-models.sh) and toolchain/verify_hub_hashes.py.
+#   pip install -r requirements/deploy-tools.txt
+# Exact version installed on Python 3.13 (Linux), 26 October 2026; verify_hub_hashes.py was tested
+# offline (tests/test_verify_hub_hashes.py), not against the Hub.
+huggingface_hub==2.3.0
+#
+# Not installable with pip; versions as in Volume 2, Table B.3, checked by the release workflow
+# only where noted:
+#   OPA 1.21.3                 policy tests (gateway/policy), run in CI
+#   Docker Engine with Compose v2   `docker compose config` on toolchain/compose.yaml, run in CI
+#   kubeconform 0.7.0          offline schema check of toolchain/*.yaml, run in CI
+#   kubectl, Helm, GPU Operator 26.7.2, vLLM 0.31, Ollama 0.40, Open WebUI 0.11.4,
+#   LiteLLM 1.83.7 or later, Trivy, cosign, mcpo 0.0.20      not run for this release

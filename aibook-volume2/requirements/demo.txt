@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT
+# CPU examples of Volume 2: the Python client examples (examples/ch28/licenses.py, rack/rag/acl_filter.py,
+# box/bench/ttft.py). No GPU and no credentials are needed to install them; the examples need their servers.
+#   python -m venv .venv && . .venv/bin/activate && pip install -r requirements/demo.txt
+# Exact versions installed together on Python 3.13 (Linux), 26 October 2026. The client examples were
+# installed and syntax-checked, not run against servers (ch28/licenses.py needs Hub access).
+# The Volume 1 programs have their own requirements in the Volume 1 companion package.
+openai==3.37.0
+qdrant-client==1.20.0
+huggingface_hub==2.3.0

@@ -1,0 +1,27 @@
+# Listing 35.1 — Three tiers behind one API
+# From "The Birth and Adolescence of Artificial Intelligence", Volume 2, Section 35.1. Illustrative: checked against the documentation of the versions in Appendix B (Volume 2), not run end to end as one system. Test in staging before use.
+# SPDX-License-Identifier: MIT
+model_list:
+  - model_name: rack-general
+    litellm_params:
+      model: openai/rack-general
+      api_base: http://rack-general:8000/v1
+      api_key: os.environ/RACK_KEY
+  - model_name: rack-strong
+    litellm_params:
+      model: openai/rack-strong
+      api_base: http://rack-strong:8000/v1
+      api_key: os.environ/RACK_KEY
+  - model_name: cloud-mid-direct
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/ANTHROPIC_KEY
+litellm_settings:
+  fallbacks:
+    - {"rack-strong": ["rack-general"]}
+    - {"cloud-mid-direct": ["rack-strong"]}
+# policy runs first; the Rack may stand in for the cloud,
+# never the reverse: no fallbacks, default_fallbacks,
+# context_window_fallbacks or content_policy_fallbacks entry
+# may lead from a Rack model to a cloud model
+# (Listing 34.2 adds the cloud platforms)

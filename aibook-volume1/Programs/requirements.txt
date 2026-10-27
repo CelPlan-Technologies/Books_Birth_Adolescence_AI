@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: MIT
+# Libraries for the companion programs of Volume 1 (Python 3.10 or later).
+# Install with:  pip install -r requirements.txt
+# ch03_bpe_toy.py needs none of them.
+tokenizers>=0.20   # ch01_bpe_tokenizers.py (tested with 0.23)
+nltk>=3.9          # the 17 Project Gutenberg books (tested with 3.10)
+numpy>=1.24        # ch01_experiment.py, ch01_glove_embeddings.py
+matplotlib>=3.7    # ch01_experiment_figures.py, ch01_glove_embeddings.py

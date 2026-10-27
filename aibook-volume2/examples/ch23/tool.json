@@ -1,0 +1,14 @@
+{"type": "function",
+ "function": {
+  "name": "get_site_status",
+  "description": "Status (up, degraded, down) and active alarms of one cell site. Use for one named site, not for regional summaries.",
+  "parameters": {
+   "type": "object",
+   "properties": {
+    "site": {"type": "string",
+      "description": "Site code, e.g. ALX-14"},
+    "include_history": {"type": ["boolean", "null"],
+      "description": "true to add 7 days of alarm history"}},
+   "required": ["site", "include_history"],
+   "additionalProperties": false},
+  "strict": true}}

@@ -1,0 +1,36 @@
+# Prerequisites of embed.yaml (Listing 31.2) — template
+# Companion to "The Birth and Adolescence of Artificial Intelligence", Volume 2, Sections 31.4 and 33.6. Not printed in the book. Adapt, then validate before apply (docs/deployment-prerequisites.md).
+# SPDX-License-Identifier: MIT
+#
+#   cp k8s-prereqs.example.yaml k8s-prereqs.yaml   # edit the marked values
+#   kubectl apply --dry-run=server -f k8s-prereqs.yaml
+#   kubectl apply -f k8s-prereqs.yaml
+#
+# The namespace of the retrieval services
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: retrieval
+---
+# The shared model store, mounted read-only by the model servers. It must be
+# bound to a volume that supports ReadOnlyMany (NFS or a CSI driver that
+# offers it), filled beforehand with the hashed files of Listing 31.4, e.g.
+# /Qwen3-Embedding-4B at the root of the volume.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: model-store
+  namespace: retrieval
+spec:
+  accessModes: [ReadOnlyMany]
+  storageClassName: nfs-models      # EDIT: your ReadOnlyMany storage class
+  resources:
+    requests:
+      storage: 2Ti                  # EDIT: the model-store budget (Ch31 workbook)
+# Pull credentials for the internal registry, only if it requires them.
+# Create the Secret from the command line, never from a committed file:
+#   kubectl -n retrieval create secret generic registry-pull \
+#     --type=kubernetes.io/dockerconfigjson \
+#     --from-file=.dockerconfigjson=$HOME/.docker/config.json
+# and add to the pod spec of embed.yaml:
+#   imagePullSecrets: [{name: registry-pull}]

@@ -1,0 +1,21 @@
+{"ts": "2026-10-02T14:03:11Z",
+ "user": "a.silva", "groups": ["sales"],
+ "request_id": "r-7f3c",
+ "policy": "v2026-09-30",
+ "classes": ["R1", "R2", "R3"],
+ "sources": [
+   {"doc": "bid-2026-118", "class": "R3"},
+   {"doc": "pricing-guide-7", "class": "R2"},
+   {"doc": "tender-TS-44", "class": "R1"}],
+ "calls": [
+   {"model": "rack/gpt-oss-120b",
+    "tokens": [8120, 640]},
+   {"model": "cloud/sonnet-5.5",
+    "region": "us",
+    "classes": ["R1", "R3"],
+    "transform": "pseudonymize",
+    "rule": "R3.cloud.drafting",
+    "sent_sha256": "9b1e…",
+    "prompt_ref": "ps-7f3c-2",
+    "tokens": [1450, 520]}],
+ "tools": [], "outcome": "ok"}

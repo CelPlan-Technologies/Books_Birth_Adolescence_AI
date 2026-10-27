@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+# Fine-tuning an embedder: examples/ch19/train_embedder.py (Listing 19.1, Volume 2, Section 19.3).
+#   pip install -r requirements/embedding-training.txt
+# Exact versions installed together on Python 3.13 (Linux x86-64, CPU only), 26 October 2026, and used
+# to run train_embedder.py end to end on triples.example.jsonl with a tiny randomly initialized
+# BERT-style model (fp32; the book's Qwen3-Embedding-0.6B and GPU precisions were not run).
+# torch from PyPI is the CUDA build on Linux (it also runs on the CPU); for a CPU-only install use
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+# Accelerators: NVIDIA GPU with BF16 (Ampere or later) for the 0.6B model; older NVIDIA GPUs use FP16;
+# Apple MPS and the CPU use FP32 (smoke tests only).
+sentence-transformers[train]==6.1.0
+torch==2.14.1
+transformers==5.20.2
+datasets==5.1.0
+accelerate==1.15.0
+tokenizers==0.23.3
+huggingface_hub==1.33.0     # sentence-transformers 6.1 requires <2

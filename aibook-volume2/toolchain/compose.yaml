@@ -1,0 +1,25 @@
+# Listing 31.1 — Optional Box services (compose.yaml, run in WSL2)
+# From "The Birth and Adolescence of Artificial Intelligence", Volume 2, Section 31.2. Illustrative: checked against the documentation of the versions in Appendix B (Volume 2), not run end to end as one system. Test in staging before use.
+# SPDX-License-Identifier: MIT
+services:
+  docling:
+    image: ${DOCLING_IMAGE}  # digest in .env
+    ports: ["127.0.0.1:5001:5001"]
+    restart: unless-stopped
+  pgvector:
+    image: ${PGVECTOR_IMAGE} # PostgreSQL 17
+    environment:
+      POSTGRES_PASSWORD_FILE:
+        /run/secrets/pg_pw
+    secrets: [pg_pw]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports: ["127.0.0.1:5432:5432"]
+    restart: unless-stopped
+secrets:
+  pg_pw: { file: ./secrets/pg_pw.txt }
+volumes:
+  pgdata: {}
+# prerequisites: cp .env.example .env (image digests)
+# and secrets/pg_pw.txt (see secrets/pg_pw.txt.example)
+# docker compose up -d; docker compose ps

@@ -1,0 +1,56 @@
+Companion files of "The Birth and Adolescence of Artificial Intelligence"
+Volume 1: How Language Models Learn and Represent Human Knowledge
+Copyright (c) 2026 Leonhard Korowajczuk
+
+SPDX-License-Identifier: MIT
+
+SCOPE
+Every file in this package is covered by the MIT License below: workbooks
+(*.xlsx), programs and scripts, configuration and policy files, templates,
+dependency lists, tests, CI workflows and documentation.
+
+Files that can carry a comment carry the line
+SPDX-License-Identifier: MIT. Files that cannot carry it without changing
+their format or their exact content carry none, and this license applies to
+them all the same: JSON and JSON Lines files (including .secrets.baseline),
+the workbooks, and the expected outputs in Programs/expected/ (compared byte for
+byte). tests/test_repo_files.py checks this.
+
+The text and figures of the books are NOT covered by this license (see THE
+BOOK below), even where a file reproduces a listing or a table printed in a
+book: the file is licensed, the book is not.
+
+MIT LICENSE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+TRADEMARKS
+This license grants no rights to trademarks. CELBrain is a trademark of
+CelPlan Technologies, Inc.; other product names belong to their owners.
+
+THIRD-PARTY MATERIAL
+Models, datasets and software that the files download or call (for example
+the Project Gutenberg books distributed with NLTK, the GloVe vectors, model
+checkpoints, container images)
+are not part of this package and keep their own licenses; check them before
+use.
+
+THE BOOK
+The text and figures of the books are not covered by this license; they are
+protected by the books' copyright notices.

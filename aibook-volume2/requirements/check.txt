@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: MIT
+# Tools of the check suite (.github/workflows/check.yml, tests/, .pre-commit-config.yaml).
+#   pip install -r requirements/check.txt && python -m pytest tests/
+# Exact versions installed and run together on Python 3.13 (Linux), 26 October 2026.
+pytest==9.1.1
+PyYAML==6.0.3
+detect-secrets==1.5.0
+pre-commit==4.7.0
+openai==3.37.0          # imported by box/bench/ttft.py, which tests/test_ttft.py loads

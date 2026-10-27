@@ -1,0 +1,37 @@
+17 books, 1,314,109 words
+
+Vocabulary of 1,000 tokens: 2.08 tokens per word
+  the            the
+  whale          whale
+  captain        c·aptain
+  happiness      happ·iness
+  unhappiness    un·ha·pp·iness
+  unbelievable   un·be·lie·v·able
+  transformer    t·ran·s·for·mer
+  carburetor     c·ar·b·ure·t·or
+  Shannon        S·han·n·on
+  1948           1·9·4·8
+
+Vocabulary of 8,000 tokens: 1.41 tokens per word
+  the            the
+  whale          whale
+  captain        captain
+  happiness      happiness
+  unhappiness    un·happ·iness
+  unbelievable   un·belie·v·able
+  transformer    trans·for·mer
+  carburetor     car·b·ure·t·or
+  Shannon        S·han·n·on
+  1948           1·9·4·8
+
+Vocabulary of 32,000 tokens: 1.26 tokens per word
+  the            the
+  whale          whale
+  captain        captain
+  happiness      happiness
+  unhappiness    unhappiness
+  unbelievable   un·belie·vable
+  transformer    trans·former
+  carburetor     carb·ure·tor
+  Shannon        S·han·non
+  1948           19·4·8

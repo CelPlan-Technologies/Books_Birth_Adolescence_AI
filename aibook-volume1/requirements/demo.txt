@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MIT
+# Volume 1 programs (Programs/) and the Python client example examples/ch16/three_tiers.py.
+# No GPU and no credentials are needed to install them; the client example needs its servers.
+#   python -m venv .venv && . .venv/bin/activate && pip install -r requirements/demo.txt
+# Exact versions installed together on Python 3.13 (Linux), 26 October 2026, and used to run
+# ch03_bpe_toy.py, ch01_bpe_tokenizers.py and ch01_experiment_figures.py offline on the NLTK corpus
+# (ch01_corpus_statistics.py needs only the standard library; ch01_experiment.py was rerun with
+# NumPy 2.5.3; see EVIDENCE.md). The client example was installed and syntax-checked, not run
+# against a server.
+# Programs/requirements.txt keeps the looser lower bounds printed in Volume 1.
+numpy==2.5.4
+matplotlib==3.11.2
+nltk==3.10.4
+tokenizers==0.23.3
+openai==3.37.0

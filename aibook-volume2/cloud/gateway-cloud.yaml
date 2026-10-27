@@ -1,0 +1,30 @@
+# Listing 34.2 — Cloud deployments in the gateway (LiteLLM, abridged)
+# From "The Birth and Adolescence of Artificial Intelligence", Volume 2, Section 34.5. Illustrative, abridged: checked against the documentation of the versions in Appendix B (Volume 2), not run end to end as one system. Test in staging before use.
+# SPDX-License-Identifier: MIT
+model_list:
+  - model_name: cloud-mid
+    litellm_params:
+      model: bedrock/us.anthropic.claude-sonnet-5-5
+      aws_region_name: us-east-1
+      # US cross-Region profile; AWS credentials
+      # from IAM Roles Anywhere (Section 34.5)
+  - model_name: cloud-mid
+    litellm_params:
+      model: bedrock/us.anthropic.claude-sonnet-5-5
+      aws_region_name: us-west-2
+  - model_name: cloud-mid-direct
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/ANTHROPIC_KEY
+router_settings:
+  routing_strategy: simple-shuffle
+  num_retries: 2
+  timeout: 600   # long reasoning answers
+litellm_settings:
+  fallbacks:
+    - {"rack-strong": ["rack-general"]}
+    - {"cloud-mid": ["rack-strong", "rack-general"]}
+    - {"cloud-mid-direct": ["rack-strong"]}
+# no configured route to cloud-mid-direct: the
+# gateway adds it to a request's own fallbacks
+# only when every class present is approved for it

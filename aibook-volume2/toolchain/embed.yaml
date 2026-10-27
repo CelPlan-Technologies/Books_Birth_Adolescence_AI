@@ -1,0 +1,50 @@
+# Listing 31.2 — The embedding service on the Rack (embed.yaml)
+# From "The Birth and Adolescence of Artificial Intelligence", Volume 2, Section 31.4. Illustrative: checked against the documentation of the versions in Appendix B (Volume 2), not run end to end as one system. Test in staging before use.
+# SPDX-License-Identifier: MIT
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: embed, namespace: retrieval}
+spec:
+  replicas: 1   # second replica on CPU (33.6)
+  selector: {matchLabels: {app: embed}}
+  template:
+    metadata: {labels: {app: embed}}
+    spec:
+      containers:
+      - name: tei
+        image: registry.local/tei@sha256:...
+        args: ["--model-id",
+               "/models/Qwen3-Embedding-4B"]
+        env:   # a local --model-id needs no Hub; this stops any Hub client in
+               # the image from downloading (huggingface_hub); it is not a
+               # firewall: restrict egress with a NetworkPolicy (not supplied)
+        - {name: HF_HUB_OFFLINE, value: "1"}
+        resources:  # one MIG slice (33.2)
+          limits: {nvidia.com/mig-1g.24gb: 1}
+        volumeMounts:
+        - {name: models, mountPath: /models,
+           readOnly: true}
+        startupProbe:   # up to 10 minutes
+          httpGet: {path: /health, port: 80}
+          periodSeconds: 10
+          failureThreshold: 60
+        readinessProbe: # in the Service only while it answers
+          httpGet: {path: /health, port: 80}
+          periodSeconds: 10
+          failureThreshold: 3
+      volumes:
+      - name: models
+        persistentVolumeClaim:  # shared (NFS), ReadOnlyMany
+          {claimName: model-store}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: embed, namespace: retrieval}
+spec:
+  selector: {app: embed}
+  ports: [{port: 80, targetPort: 80}]
+# prerequisites (namespace, model-store PVC, image
+# digest): docs/deployment-prerequisites.md and
+# k8s-prereqs.example.yaml
+# kubectl apply -f embed.yaml
+# kubectl -n retrieval get pods -o wide
